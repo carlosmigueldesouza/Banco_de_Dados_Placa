@@ -1,0 +1,77 @@
+CREATE TYPE "tipo_contato" AS ENUM (
+  'CELULAR',
+  'EMAIL'
+);
+
+CREATE TABLE "cliente" (
+  "cpf" integer UNIQUE PRIMARY KEY,
+  "nome" varchar(100)
+);
+
+CREATE TABLE "contato" (
+  "codigo" integer UNIQUE PRIMARY KEY,
+  "cpf" integer NOT NULL,
+  "tipo" tipo_contato NOT NULL,
+  "informacao" varchar(255) NOT NULL
+);
+
+CREATE TABLE "cor" (
+  "codigo" integer UNIQUE PRIMARY KEY,
+  "descricao" varchar(100) NOT NULL,
+  "fundo" boolean NOT NULL,
+  "frase" boolean NOT NULL
+);
+
+CREATE TABLE "encomenda" (
+  "codigo" integer UNIQUE PRIMARY KEY,
+  "data" timestamp NOT NULL,
+  "entrega" timestamp NOT NULL,
+  "cliente_cpf" integer NOT NULL,
+  "desconto_codigo" integer
+);
+
+CREATE TABLE "item" (
+  "codigo" integer UNIQUE PRIMARY KEY,
+  "encomenda_codigo" integer NOT NULL,
+  "placa_codigo" integer NOT NULL,
+  "frase" varchar(50) NOT NULL,
+  "cor_fundo_codigo" integer NOT NULL,
+  "cor_frase_codigo" integer NOT NULL
+);
+
+CREATE TABLE "desconto" (
+  "codigo" integer UNIQUE PRIMARY KEY,
+  "valor_minimo" decimal(10,2) NOT NULL,
+  "valor_maximo" decimal(10,2) NOT NULL,
+  "percentual" decimal(5,2) NOT NULL
+);
+
+CREATE TABLE "placa" (
+  "codigo" integer UNIQUE PRIMARY KEY,
+  "largura" integer NOT NULL,
+  "altura" integer NOT NULL,
+  "material_codigo" integer NOT NULL
+);
+
+CREATE TABLE "material" (
+  "codigo" integer UNIQUE NOT NULL,
+  "descricao" varchar(20) NOT NULL,
+  "valor_letra" decimal(10,2) NOT NULL,
+  "custo" decimal(10,2) NOT NULL
+);
+
+ALTER TABLE "encomenda" ADD FOREIGN KEY ("desconto_codigo") REFERENCES "desconto" ("codigo") DEFERRABLE INITIALLY IMMEDIATE;
+
+ALTER TABLE "item" ADD FOREIGN KEY ("encomenda_codigo") REFERENCES "encomenda" ("codigo") DEFERRABLE INITIALLY IMMEDIATE;
+
+ALTER TABLE "item" ADD FOREIGN KEY ("placa_codigo") REFERENCES "placa" ("codigo") DEFERRABLE INITIALLY IMMEDIATE;
+
+ALTER TABLE "placa" ADD FOREIGN KEY ("material_codigo") REFERENCES "material" ("codigo") DEFERRABLE INITIALLY IMMEDIATE;
+
+ALTER TABLE "item" ADD FOREIGN KEY ("cor_fundo_codigo") REFERENCES "cor" ("codigo") DEFERRABLE INITIALLY IMMEDIATE;
+
+ALTER TABLE "item" ADD FOREIGN KEY ("cor_frase_codigo") REFERENCES "cor" ("codigo") DEFERRABLE INITIALLY IMMEDIATE;
+
+ALTER TABLE "contato" ADD FOREIGN KEY ("cpf") REFERENCES "cliente" ("cpf") DEFERRABLE INITIALLY IMMEDIATE;
+
+ALTER TABLE "encomenda" ADD FOREIGN KEY ("cliente_cpf") REFERENCES "cliente" ("cpf") DEFERRABLE INITIALLY IMMEDIATE;
