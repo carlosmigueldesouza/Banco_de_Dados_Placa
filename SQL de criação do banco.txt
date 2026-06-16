@@ -1,77 +1,78 @@
-Enum tipo_contato{
-  CELULAR
-  EMAIL
-}
-table cliente{
-  codigo serial [unique, increment, pk]
-  cpf char(11) [unique, not null]
-  nome varchar(100)
-  }
+CREATE TYPE "tipo_contato" AS ENUM (
+  'CELULAR',
+  'EMAIL'
+);
 
-  table contato{
-    codigo serial [unique, pk, increment]
-    cliente_codigo integer [not null]
-    tipo tipo_contato [not null]
-    informacao varchar(255) [not null]
-  }
+CREATE TABLE "cliente" (
+  "codigo" SERIAL UNIQUE PRIMARY KEY,
+  "cpf" char(11) UNIQUE NOT NULL,
+  "nome" varchar(100)
+);
 
-  table cor{
-    codigo serial [unique, pk, increment]
-    descricao varchar(100) [not null]
-    fundo boolean [not null]
-    frase boolean [not null]
-  }
+CREATE TABLE "contato" (
+  "codigo" SERIAL UNIQUE PRIMARY KEY,
+  "cliente_codigo" integer NOT NULL,
+  "tipo" tipo_contato NOT NULL,
+  "informacao" varchar(255) NOT NULL
+);
 
-  table encomenda{
-    codigo serial [unique, pk, increment]
-    data timestamp [not null]
-    entrega timestamp [not null]
-    cliente_codigo integer [not null]
-    desconto_codigo integer
-  }
+CREATE TABLE "cor" (
+  "codigo" SERIAL UNIQUE PRIMARY KEY,
+  "descricao" varchar(100) NOT NULL,
+  "fundo" boolean NOT NULL,
+  "frase" boolean NOT NULL
+);
 
-  table item{
-    codigo serial [unique, pk, increment]
-    encomenda_codigo integer [not null]
-    placa_codigo integer [not null]
-    frase varchar(50) [not null]
-    cor_fundo_codigo integer [not null]
-    cor_frase_codigo integer [not null]
-  }
+CREATE TABLE "encomenda" (
+  "codigo" SERIAL UNIQUE PRIMARY KEY,
+  "data" timestamp NOT NULL,
+  "entrega" timestamp NOT NULL,
+  "cliente_codigo" integer NOT NULL,
+  "desconto_codigo" integer
+);
 
-  table desconto{
-    codigo serial [unique, pk, increment]
-    valor_minimo decimal(10,2) [not null]
-    valor_maximo decimal(10,2) [not null]
-    percentual decimal(5,2) [not null]
-  }
+CREATE TABLE "item" (
+  "codigo" SERIAL UNIQUE PRIMARY KEY,
+  "encomenda_codigo" integer NOT NULL,
+  "placa_codigo" integer NOT NULL,
+  "frase" varchar(50) NOT NULL,
+  "cor_fundo_codigo" integer NOT NULL,
+  "cor_frase_codigo" integer NOT NULL
+);
 
-  table placa{
-    codigo serial [unique, pk, increment]
-    largura integer [not null]
-    altura integer [not null]
-    material_codigo integer [not null]
-  }
+CREATE TABLE "desconto" (
+  "codigo" SERIAL UNIQUE PRIMARY KEY,
+  "valor_minimo" decimal(10,2) NOT NULL,
+  "valor_maximo" decimal(10,2) NOT NULL,
+  "percentual" decimal(5,2) NOT NULL
+);
 
-  table material{
-    codigo serial [unique, not null, increment]
-    descricao varchar(20) [not null]
-    valor_letra decimal(10,2) [not null]
-    custo decimal(10,2) [not null]
-  }
+CREATE TABLE "placa" (
+  "codigo" SERIAL UNIQUE PRIMARY KEY,
+  "largura" integer NOT NULL,
+  "altura" integer NOT NULL,
+  "material_codigo" integer NOT NULL
+);
 
-Ref: "desconto"."codigo" < "encomenda"."desconto_codigo"
+CREATE TABLE "material" (
+  "codigo" SERIAL UNIQUE NOT NULL,
+  "descricao" varchar(20) NOT NULL,
+  "valor_letra" decimal(10,2) NOT NULL,
+  "custo" decimal(10,2) NOT NULL
+);
 
-Ref: "encomenda"."codigo" < "item"."encomenda_codigo"
+ALTER TABLE "encomenda" ADD FOREIGN KEY ("desconto_codigo") REFERENCES "desconto" ("codigo") DEFERRABLE INITIALLY IMMEDIATE;
 
-Ref: "placa"."codigo" < "item"."placa_codigo"
+ALTER TABLE "item" ADD FOREIGN KEY ("encomenda_codigo") REFERENCES "encomenda" ("codigo") DEFERRABLE INITIALLY IMMEDIATE;
 
-Ref: "material"."codigo" < "placa"."material_codigo"
+ALTER TABLE "item" ADD FOREIGN KEY ("placa_codigo") REFERENCES "placa" ("codigo") DEFERRABLE INITIALLY IMMEDIATE;
 
-Ref: "cor"."codigo" < "item"."cor_fundo_codigo"
+ALTER TABLE "placa" ADD FOREIGN KEY ("material_codigo") REFERENCES "material" ("codigo") DEFERRABLE INITIALLY IMMEDIATE;
 
-Ref: "cor"."codigo" < "item"."cor_frase_codigo"
+ALTER TABLE "item" ADD FOREIGN KEY ("cor_fundo_codigo") REFERENCES "cor" ("codigo") DEFERRABLE INITIALLY IMMEDIATE;
 
-Ref: "cliente"."codigo" < "contato"."cliente_codigo"
+ALTER TABLE "item" ADD FOREIGN KEY ("cor_frase_codigo") REFERENCES "cor" ("codigo") DEFERRABLE INITIALLY IMMEDIATE;
 
-Ref: "cliente"."codigo" < "encomenda"."cliente_codigo"
+ALTER TABLE "contato" ADD FOREIGN KEY ("cliente_codigo") REFERENCES "cliente" ("codigo") DEFERRABLE INITIALLY IMMEDIATE;
+
+ALTER TABLE "encomenda" ADD FOREIGN KEY ("cliente_codigo") REFERENCES "cliente" ("codigo") DEFERRABLE INITIALLY IMMEDIATE;
