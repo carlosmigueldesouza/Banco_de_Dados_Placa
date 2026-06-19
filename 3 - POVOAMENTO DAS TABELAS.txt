@@ -8,21 +8,21 @@ INSERT INTO COR(DESCRICAO, FUNDO, FRASE)
             ('Amarelo', true, false),
             ('Laranja', true, false),
             ('Cinza', true, true),
-            ('Marrom', true, false)
+            ('Marrom', true, false);
 
 -- TABELA MATERIAL
 INSERT INTO MATERIAL(DESCRICAO, VALOR_LETRA, CUSTO)
      VALUES ('Plástico', 1.50, 3.45),
             ('Madeira', 2.00, 8.50),
             ('Acrílico', 2.50, 12.90),
-            ('Alumínio', 3.20, 18.50)
+            ('Alumínio', 3.20, 18.50);
 
 -- TABELA PLACA
 INSERT INTO PLACA(LARGURA, ALTURA, MATERIAL_CODIGO)
      VALUES (100, 80, 2),
             (150, 100, 3),
             (200, 150, 4),
-            (90, 60, 3)
+            (90, 60, 3);
 
 -- TABELA CLIENTE
 INSERT INTO CLIENTE(CPF, NOME)
@@ -30,7 +30,7 @@ INSERT INTO CLIENTE(CPF, NOME)
             ('29563847182', 'Bruno Henrique Lima'),
             ('30674958293', 'Camila Fernanda Rocha'),
             ('41785069314', 'Diego Alves Pereira'),
-            ('52896170425', 'Eduarda Cristina Santos')
+            ('52896170425', 'Eduarda Cristina Santos');
 
 -- TABELA CONTATO
 INSERT INTO CONTATO(CLIENTE_CODIGO, TIPO, INFORMACAO)
@@ -38,7 +38,7 @@ INSERT INTO CONTATO(CLIENTE_CODIGO, TIPO, INFORMACAO)
             (2, 'EMAIL', 'brunohenrique@gmail.com'),
             (3, 'CELULAR', '(47) 99812-3456'),
             (4, 'EMAIL', 'camila.rocha@gmail.com'),
-            (5, 'CELULAR', '(47) 99934-5678')
+            (5, 'CELULAR', '(47) 99934-5678');
 
 -- TABELA ENCOMENDA
 INSERT INTO ENCOMENDA(DATA, ENTREGA, CLIENTE_CODIGO, VALOR, SITUACAO_ENCOMENDA)
@@ -61,7 +61,7 @@ INSERT INTO ENCOMENDA(DATA, ENTREGA, CLIENTE_CODIGO, VALOR, SITUACAO_ENCOMENDA)
             ('06/06/2026', '15/06/2026', 2, 92.30, 'ABERTA'),
             ('09/06/2026', '19/06/2026', 3, 99.30, 'ABERTA'),
             ('12/06/2026', '22/06/2026', 4, 92.30, 'ABERTA'),
-            ('14/06/2026', '24/06/2026', 5, 66.40, 'ABERTA')
+            ('14/06/2026', '24/06/2026', 5, 66.40, 'ABERTA');
 
 -- TABELA RECEBIMENTO
 INSERT INTO RECEBIMENTO(ENCOMENDA_CODIGO, VALOR_SINAL, VALOR_RESTANTE)
@@ -84,4 +84,77 @@ INSERT INTO RECEBIMENTO(ENCOMENDA_CODIGO, VALOR_SINAL, VALOR_RESTANTE)
             (17, 23.08, 69.22),
             (18, 24.83, 74.47),
             (19, 23.08, 69.22),
-            (20, 16.60, 49.80)
+            (20, 16.60, 49.80);
+
+-- TABELA ITEM
+INSERT INTO ITEM(ENCOMENDA_CODIGO, PLACA_CODIGO, FRASE, COR_FUNDO_CODIGO, COR_FRASE_CODIGO)
+     VALUES (1,1,'BEM VINDO',7,2),
+            (1,2,'LAR DOCE LAR',1,2),
+            (1,3,'SEJA FELIZ',4,1),
+            
+            (2,2,'ACREDITE',5,1),
+            (2,4,'SONHE ALTO',8,2),
+            (2,1,'BOA SORTE',2,1),
+            
+            (3,3,'PAZ E AMOR',9,2),
+            (3,4,'GRATIDAO',3,1),
+            
+            (4,1,'FAMILIA',7,2),
+            (4,2,'NAO DESISTA',4,1),
+            (4,3,'SUCESSO',5,1),
+            
+            (5,4,'FE',2,1),
+            (5,1,'UNIAO',8,2),
+            
+            (6,2,'ALEGRIA',1,2),
+            (6,3,'CARPE DIEM',4,1),
+            (6,4,'VIVA HOJE',9,2),
+            
+            (7,1,'DEUS E FIEL',7,2),
+            (7,2,'BONS VENTOS',5,1),
+            
+            (8,3,'PROSPERIDADE',2,1),
+            (8,4,'CORAGEM',8,2),
+            (8,1,'HARMONIA',1,2),
+            
+            (9,2,'AMOR',3,1),
+            (9,3,'RESPEITO',4,1),
+            
+            (10,4,'ESPERANCA',7,2),
+            (10,1,'MOTIVACAO',5,1),
+            (10,2,'CONFIANCA',2,1),
+            
+            (11,3,'OTIMISMO',8,2),
+            (11,4,'VITORIA',1,2),
+            
+            (12,1,'PERSISTENCIA',4,1),
+            (12,2,'DEDICACAO',9,2),
+            (12,3,'FOCO',2,1),
+            
+            (13,4,'DETERMINACAO',7,2),
+            (13,1,'TRABALHO',5,1),
+            
+            (14,2,'AMIZADE',1,2),
+            (14,3,'RESILIENCIA',8,2),
+            (14,4,'HONESTIDADE',3,1),
+            
+            (15,1,'CONQUISTA',2,1),
+            (15,2,'OBJETIVO',4,1),
+            
+            (16,3,'FORCA',9,2),
+            (16,4,'INSPIRACAO',1,2),
+            (16,1,'EQUILIBRIO',7,2),
+            
+            (17,2,'SABEDORIA',5,1),
+            (17,3,'CRIATIVIDADE',2,1),
+            
+            (18,4,'COMPROMISSO',8,2),
+            (18,1,'EXCELENCIA',1,2),
+            (18,2,'ATITUDE',4,1),
+            
+            (19,3,'PERSEVERANCA',9,2),
+            (19,4,'PACIENCIA',2,1),
+            
+            (20,1,'REALIZACAO',7,2),
+            (20,2,'FELICIDADE',5,1),
+            (20,3,'QUALIDADE DE VIDA',1,2);
