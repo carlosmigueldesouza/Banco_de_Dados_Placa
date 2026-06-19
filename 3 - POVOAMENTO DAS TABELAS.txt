@@ -1,0 +1,87 @@
+-- TABELA COR
+INSERT INTO COR(DESCRICAO, FUNDO, FRASE)
+     VALUES ('Branco', true, true),
+            ('Preto', true, true),
+            ('Vermelho', true, true),
+            ('Azul', true, true),
+            ('Verde', true, true),
+            ('Amarelo', true, false),
+            ('Laranja', true, false),
+            ('Cinza', true, true),
+            ('Marrom', true, false)
+
+-- TABELA MATERIAL
+INSERT INTO MATERIAL(DESCRICAO, VALOR_LETRA, CUSTO)
+     VALUES ('Plástico', 1.50, 3.45),
+            ('Madeira', 2.00, 8.50),
+            ('Acrílico', 2.50, 12.90),
+            ('Alumínio', 3.20, 18.50)
+
+-- TABELA PLACA
+INSERT INTO PLACA(LARGURA, ALTURA, MATERIAL_CODIGO)
+     VALUES (100, 80, 2),
+            (150, 100, 3),
+            (200, 150, 4),
+            (90, 60, 3)
+
+-- TABELA CLIENTE
+INSERT INTO CLIENTE(CPF, NOME)
+     VALUES ('18452739061', 'Ana Paula Martins'),
+            ('29563847182', 'Bruno Henrique Lima'),
+            ('30674958293', 'Camila Fernanda Rocha'),
+            ('41785069314', 'Diego Alves Pereira'),
+            ('52896170425', 'Eduarda Cristina Santos')
+
+-- TABELA CONTATO
+INSERT INTO CONTATO(CLIENTE_CODIGO, TIPO, INFORMACAO)
+     VALUES (1, 'CELULAR', '(47) 99789-1987'),
+            (2, 'EMAIL', 'brunohenrique@gmail.com'),
+            (3, 'CELULAR', '(47) 99812-3456'),
+            (4, 'EMAIL', 'camila.rocha@gmail.com'),
+            (5, 'CELULAR', '(47) 99934-5678')
+
+-- TABELA ENCOMENDA
+INSERT INTO ENCOMENDA(DATA, ENTREGA, CLIENTE_CODIGO, VALOR, SITUACAO_ENCOMENDA)
+     VALUES ('15/06/2026', '18/06/2026', 1, 109.70, 'ABERTA'),
+            ('18/05/2026', '25/06/2026', 3, 92.80, 'ABERTA'),
+            ('15/05/2026', '29/05/2026', 2, 68.60, 'FECHADA'),
+            ('02/04/2026', '10/04/2026', 4, 101.30, 'FECHADA'),
+            ('05/04/2026', '12/04/2026', 5, 36.40, 'FECHADA'),
+            ('10/04/2026', '20/04/2026', 1, 110.60, 'FECHADA'),
+            ('15/04/2026', '25/04/2026', 2, 64.40, 'FECHADA'),
+            ('20/04/2026', '30/04/2026', 3, 111.80, 'FECHADA'),
+            ('25/04/2026', '05/05/2026', 4, 67.00, 'FECHADA'),
+            ('01/05/2026', '08/05/2026', 5, 97.30, 'FECHADA'),
+            ('07/05/2026', '15/05/2026', 1, 74.50, 'FECHADA'),
+            ('12/05/2026', '22/05/2026', 2, 99.20, 'FECHADA'),
+            ('18/05/2026', '28/05/2026', 3, 67.40, 'FECHADA'),
+            ('22/05/2026', '01/06/2026', 4, 124.50, 'FECHADA'),
+            ('28/05/2026', '08/06/2026', 5, 59.40, 'FECHADA'),
+            ('03/06/2026', '12/06/2026', 1, 100.90, 'ABERTA'),
+            ('06/06/2026', '15/06/2026', 2, 92.30, 'ABERTA'),
+            ('09/06/2026', '19/06/2026', 3, 99.30, 'ABERTA'),
+            ('12/06/2026', '22/06/2026', 4, 92.30, 'ABERTA'),
+            ('14/06/2026', '24/06/2026', 5, 66.40, 'ABERTA')
+
+-- TABELA RECEBIMENTO
+INSERT INTO RECEBIMENTO(ENCOMENDA_CODIGO, VALOR_SINAL, VALOR_RESTANTE)
+     VALUES (1, 27.42, 82.28),
+            (2, 23.20, 69.60),
+            (3, 17.15, 51.45),
+            (4, 25.33, 75.97),
+            (5, 9.10, 27.30),
+            (6, 27.65, 82.95),
+            (7, 16.10, 48.30),
+            (8, 27.95, 83.85),
+            (9, 16.75, 50.25),
+            (10, 24.32, 72.98),
+            (11, 18.62, 55.88),
+            (12, 24.80, 74.40),
+            (13, 16.85, 50.55),
+            (14, 31.12, 93.38),
+            (15, 14.85, 44.55),
+            (16, 25.23, 75.67),
+            (17, 23.08, 69.22),
+            (18, 24.83, 74.47),
+            (19, 23.08, 69.22),
+            (20, 16.60, 49.80)
