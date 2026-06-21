@@ -1,30 +1,30 @@
 -- Criar Tabela RECEBIMENTO
-create table "recebimento" (
-	"codigo"           serial primary key,
-	"encomenda_codigo" integer not null,
-	"valor_sinal"      numeric(10,2) not null,
-	"valor_restante"   numeric(10,2) not null,
+CREATE TABLE "RECEBIMENTO" (
+	"CODIGO"           SERIAL PRIMARY KEY,
+	"ENCOMENDA_CODIGO" INTEGER       NOT NULL,
+	"VALOR_SINAL"      NUMERIC(10,2) NOT NULL,
+	"VALOR_RESTANTE"   NUMERIC(10,2) NOT NULL,
 
-	constraint fk_recebimento_encomenda
-	 foreign key (encomenda_codigo)
-	 references encomenda(codigo)
+	CONSTRAINT FK_RECEBIMENTO_ENCOMENDA
+	 FOREIGN KEY (ENCOMENDA_CODIGO)
+	 REFERENCES ENCOMENDA(CODIGO)
 );
 
 -- Criar coluna Valor
-	alter table encomenda
-            add column valor numeric(10,2);
+	ALTER TABLE ENCOMENDA
+          ADD COLUMN VALOR NUMERIC(10,2);
 	  
 -- Remove o condicionamento da FK
-	alter table encomenda
-           drop constraint encomenda_desconto_codigo_fkey;
+	ALTER TABLE ENCOMENDA
+          DROP CONSTRAINT ENCOMENDA_DESCONTO_CODIGO_FKEY;
 
 -- Remover a coluna codigo do desconto
-	 alter table encomenda
-	        drop column desconto_codigo;
+	 ALTER TABLE ENCOMENDA
+	       DROP COLUMN DESCONTO_CODIGO;
 
 -- Criar um ENUM para Situação
-	create type situacao as enum ('ABERTA', 'FECHADA');
+	CREATE TYPE SITUACAO AS ENUM ('ABERTA', 'FECHADA');
 
 -- Criar a coluna Situação 
-	alter table encomenda 
-	        add column situacao_encomenda situacao
+	ALTER TABLE ENCOMENDA 
+	      ADD COLUMN SITUACAO_ENCOMENDA SITUACAO
