@@ -1,13 +1,13 @@
 -- Criar Tabela RECEBIMENTO
-CREATE TABLE "RECEBIMENTO" (
-	"CODIGO"           SERIAL PRIMARY KEY,
-	"ENCOMENDA_CODIGO" INTEGER       NOT NULL,
-	"VALOR_SINAL"      NUMERIC(10,2) NOT NULL,
-	"VALOR_RESTANTE"   NUMERIC(10,2) NOT NULL,
+CREATE TABLE "recebimento" (
+	"codigo"           SERIAL PRIMARY KEY,
+	"encomenda_codigo" INTEGER       NOT NULL,
+	"valor_sinal"      NUMERIC(10,2) NOT NULL,
+	"valor_restante"   NUMERIC(10,2) NOT NULL,
 
-	CONSTRAINT FK_RECEBIMENTO_ENCOMENDA
-	 FOREIGN KEY (ENCOMENDA_CODIGO)
-	 REFERENCES ENCOMENDA(CODIGO)
+	CONSTRAINT fk_recebimento_encomenda
+	 FOREIGN KEY (encomenda_codigo)
+	 REFERENCES ENCOMENDA(codigo)
 );
 
 -- Criar coluna Valor
