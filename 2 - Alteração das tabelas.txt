@@ -12,11 +12,14 @@ CREATE TABLE "recebimento" (
 
 -- Criar coluna Valor
 	ALTER TABLE ENCOMENDA
-          ADD COLUMN VALOR NUMERIC(10,2);
+          ADD COLUMN VALOR NUMERIC(10,2) NOT NULL;
 	  
 -- Remove o condicionamento da FK
 	ALTER TABLE ENCOMENDA
           DROP CONSTRAINT ENCOMENDA_DESCONTO_CODIGO_FKEY;
+	
+-- Remove a tabela DESCONTO
+		DROP TABLE DESCONTO;
 
 -- Remover a coluna codigo do desconto
 	 ALTER TABLE ENCOMENDA
@@ -27,4 +30,4 @@ CREATE TABLE "recebimento" (
 
 -- Criar a coluna Situação 
 	ALTER TABLE ENCOMENDA 
-	      ADD COLUMN SITUACAO_ENCOMENDA SITUACAO
+	      ADD COLUMN SITUACAO_ENCOMENDA SITUACAO;
